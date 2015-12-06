@@ -36,7 +36,7 @@ app.post('/users', function(req,res){
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
-    password_hash: password_hash;
+    password_hash: password_hash
   });
   console.log(user)
 
@@ -72,7 +72,7 @@ app.post('/login', function(req,res){
       res.cookie("loggedinId", user.id);
       res.send({
         id: user.id,
-        username: user.username;
+        username: user.username
       });
     } else {
       res.status(400);
@@ -82,19 +82,17 @@ app.post('/login', function(req,res){
 
 });
 
-});
 
 //================
 // Edit user
 //================
-
 app.put('/users/:id', function(req, res){
   password_hash = md5(req.body.password_hash);
   var userEdit = {
     email: req.body.edited_email,
     username: req.body.edited_username,
     first_name: req.body.edited_first_name,
-    last_name: req.body.edited_last_name,
+    last_name: req.body.edited_last_name
   };
 
   User.findOneAndUpdate({_id: req.params.id}, userEdit, function(err,user){
@@ -142,7 +140,6 @@ app.post('/users/:id/articles', function(req, res){
         user.articles.push(article);
         user.save();
       });
-
     };
   });
 });
@@ -152,12 +149,10 @@ app.post('/users/:id/articles', function(req, res){
 //================
 
 app.delete('/users/:id/articles/:article_id', function(req, res){
-
   Article.findbyId(req.params.article_id).remove(function(err, article){
     if(err){
       console.log(err);
     }
-    
   });
 
   User.findbyId(req.params.id).then(function(user){
@@ -170,4 +165,7 @@ app.delete('/users/:id/articles/:article_id', function(req, res){
       }
     });
   });
+
 });
+
+
