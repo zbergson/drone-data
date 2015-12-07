@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 
 var articleSchema = new mongoose.Schema({
-  title: String,
+  town: String,
+  country: String,
   narrative: String,
+  date: String,
   deaths: Number,
-  location: String,
+  article_link: String,
   created_at: Date,
   updated_at: Date
 });

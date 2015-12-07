@@ -36,7 +36,7 @@ app.post('/users', function(req,res){
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
-    password_hash: password_hash
+    password: password_hash
   });
   console.log(user)
 
@@ -143,6 +143,30 @@ app.post('/users/:id/articles', function(req, res){
     };
   });
 });
+
+//===========================
+// Retrieve User articles
+//===========================
+app.get('/users/:id', function(req, res) {
+  User.findById(req.params.id).exec(function(err, user) {
+    if (err) {
+      console.log(err);
+      res.statusCode = 503;
+    } else {
+      
+      res.send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        password: user.password_hash,
+        articles: user.articles
+      })
+    };
+  });
+});
+
 
 //================
 // Delete articles

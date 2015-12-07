@@ -45,12 +45,22 @@ getDrones();
           var marker = new google.maps.Marker({
             position: latLng,
             map: map,
-            title: data.strike[i]['town'] + ", " + data.strike[i]['country'],
-            date: data.strike[i]['date']
-          });
+            town: data.strike[i]['town'],
+            country: data.strike[i]['country'],
+            date: data.strike[i]['date'],
+            narrative: data.strike[i]['narrative'],
+            deaths: data.strike[i]['deaths'],
+            article_link: data.strike[i]['bij_link']
+           });
           var infowindow = new google.maps.InfoWindow()
           // infowindow.id = "strikeInfo"
-          var content = "<span class='strikeTitle'>" + marker.title + "</span>" + " " + marker.date + "<button id='saveArticle'>Save</button>";
+          var content = 
+          	"<span class='strikeTitle'>" + marker.town + marker.country + "</span>" 
+          	+ "<br>" + "<span class='strikeDate'>" + marker.date +"</span>" +"<br>"+ 
+          	"<span class='strikeNarrative'>" + marker.narrative + "</span>"+"<br>"+ 
+          	"<span class='strikeDeaths'>" + marker.deaths + "</span>" + "<br>" + 
+          	"<span class='strikeArticle>" + marker.article_link + "</span>"+ "<br>" +
+          	"<button id='saveArticle'> Save </button>";
           google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
 				    return function() {
 				        infowindow.setContent(content);
@@ -66,19 +76,6 @@ getDrones();
 
 	}
 
-$(document).on("click", "#saveArticle", function() {
-	console.log("saving article")
-	saveArticleUser();
-
-});
-
-var saveArticleUser = function() {
-
-	var userData = $('.strikeTitle').text();
-	console.log(userData)
-
-
-}
 
 
 
