@@ -45,7 +45,7 @@ getDrones();
           var marker = new google.maps.Marker({
             position: latLng,
             map: map,
-            title: data.strike[i]['location'] + ", " + data.strike[i]['town'],
+            title: data.strike[i]['town'] + ", " + data.strike[i]['country'],
             date: data.strike[i]['date']
           });
           var infowindow = new google.maps.InfoWindow()
