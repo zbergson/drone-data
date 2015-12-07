@@ -5,20 +5,26 @@ myModule.directive("ngSignup", function(){
 		controllerAs: 'postUser',
 		controller: [ '$http', function SignupCtrl( $http){
 			this.$http = $http;
-			var thisContext = this;
+			var self = this;
+
+			this.testing = function() {
+				console.log('testing');
+			}
+
 			this.createUser = function(){
 				console.log("I work");
-				this.$http.post('/users', {   
+				self.$http.post('/users', {   
 					username: this.formUserUsername,
   				first_name: this.formUserFirstName,
   				last_name: this.formUserLastName,
   				email: this.formUserEmail,
   				password: this.formUserPassword
 				}).then(function(response){
-					console.log(response);
+					self.books.push(response.data)
 				});
 			};
 		}]
 	}
 });
+
 

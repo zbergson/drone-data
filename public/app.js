@@ -45,7 +45,7 @@ getDrones();
           var marker = new google.maps.Marker({
             position: latLng,
             map: map,
-            title: data.strike[i]['location'],
+            title: data.strike[i]['location'] + ", " + data.strike[i]['town'],
             date: data.strike[i]['date']
           });
           var infowindow = new google.maps.InfoWindow()
@@ -83,8 +83,8 @@ var saveArticleUser = function() {
 
 
 
-
 });
+
 
 
 
