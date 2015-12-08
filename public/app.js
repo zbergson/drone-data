@@ -55,11 +55,11 @@ getDrones();
           var infowindow = new google.maps.InfoWindow()
           // infowindow.id = "strikeInfo"
           var content = 
-          	"<span class='strikeTitle'>" + marker.town + marker.country + "</span>" 
+          	"<span class='strikeTitle'>" + "<span class='strikeTown'>" + marker.town + "</span>" + ", " + "<span class='strikeCountry'>" + marker.country + "</span>" + "</span>" 
           	+ "<br>" + "<span class='strikeDate'>" + marker.date +"</span>" +"<br>"+ 
           	"<span class='strikeNarrative'>" + marker.narrative + "</span>"+"<br>"+ 
           	"<span class='strikeDeaths'>" + marker.deaths + "</span>" + "<br>" + 
-          	"<span class='strikeArticle'>" + "<a href=" + marker.article_link+">Article</a>"+ + "</span>" + "<br>" +
+          	"<span class='strikeArticle'>" + "<a href=" + marker.article_link + ">Article</a>" + "</span>" + "<br>" +
           	"<button id='saveArticle'> Save </button>";
           google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
 				    return function() {

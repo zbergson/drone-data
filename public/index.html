@@ -69,12 +69,12 @@
     <template id="view-article-template">
       <p>{{username}}</p>
       {{#each articles}}
-      	<div id="saved-articles"> 
+      	<div class="saved-articles"> 
       	  <p id="article-town">{{town}}</p>
       	  <p id="article-country">{{country}}</p>
       	  <p id="article-narrative">{{narrative}}</p>
-      	  <p id="article-narrative">{{deaths}}</p>
-      	  <p id="article-narrative">{{article_link}}</p>
+      	  <p id="article-deaths">{{deaths}}</p>
+      	  <p id="article-link"><a href={{article_link}}>article</a></p>
       	</div>
 
       {{/each}}

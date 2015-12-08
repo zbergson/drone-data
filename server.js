@@ -121,22 +121,27 @@ app.delete('/users/:id', function(req, res){
 
 app.post('/users/:id/articles', function(req, res){
   var article = new Article({
-    title: req.body.title,
+    town: req.body.town,
+    country: req.body.country,
+    date: req.body.date,
     narrative: req.body.narrative,
     deaths: req.body.deaths,
-    location: req.body.location
+    article_link: req.body.article
   });
   article.save( function(err){
     if(err) {
       console.log(err);
     } else {
       res.send({
-        title: article.title,
+        town: article.town,
         narrative: article.narrative,
         deaths: article.deaths,
-        location: article.location
+        country: article.country,
+        article_link: article.article_link,
+        date: article.date
       });
-      User.findbyId( req.params.id).exec(function(err, user){
+      User.findById(req.params.id).exec(function(err, user){
+        console.log(user);
         user.articles.push(article);
         user.save();
       });

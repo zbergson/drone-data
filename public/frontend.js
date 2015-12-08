@@ -60,22 +60,48 @@ var getArticles = function(){
 		var template= Handlebars.compile(source)
 		var context ={ username: data.username, articles: data.articles  };
 		var html = template(context);
+		var checkClass = $('#view-profile').hasClass('clicked');
+		if(checkClass) {
+			$("#view-profile").empty();
+		}
 		$("#view-profile").append(html);
+		
+		$("#view-profile").addClass('clicked');
+
 	});
 };
 
 
 
 $(document).on("click", "#saveArticle", function() {
-	console.log("saving article")
 	saveArticleUser();
-
 });
 
 var saveArticleUser = function() {
 
-	var userData = $('.strikeTitle').text();
-	console.log(userData);
+	var attackTown = $('.strikeTown').text();
+	var attackCountry = $('.strikeCountry').text();
+	var attackDate = $('.strikeDate').text();
+	var attackNarrative = $('.strikeNarrative').text();
+	var attackDeaths = parseInt($('.strikeDeaths').text());
+	var attackArticle = $('.strikeArticle').children().attr('href');
+	console.log(attackArticle);
+	
+	var attackData = {
+		town: attackTown,
+		country: attackCountry,
+		date: attackDate,
+		narrative: attackNarrative,
+		deaths: attackDeaths,
+		article: attackArticle
+	}
+
+		$.ajax({
+		url: "/users/" + Cookies.get("loggedinId") + "/articles",
+		type: "POST",
+		dataType: 'json',
+		data: attackData
+	}).done( getArticles );
 
 
 }
